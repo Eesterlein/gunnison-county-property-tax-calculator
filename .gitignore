@@ -1,0 +1,36 @@
+# Python virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Raw source data (not deployed)
+data/raw/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor config
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Local test files
+test_*.html
+*.log
+
+# Environment variables
+.env
+.env.local
+
+# Temporary files
+*.tmp
+*.temp
