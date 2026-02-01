@@ -185,6 +185,7 @@ class DataLoader {
 
     getAssessmentRates(propertyType) {
         // Colorado assessment rates by property type
+        // Vacant and Vacant Land both use 27% single rate (non-residential)
         const rates = {
             'Residential': {
                 singleRate: false,
@@ -195,9 +196,13 @@ class DataLoader {
                 singleRate: true,
                 rate: 0.27  // 27%
             },
+            'Vacant': {
+                singleRate: true,
+                rate: 0.27  // 27% - non-residential assessment rate
+            },
             'Vacant Land': {
                 singleRate: true,
-                rate: 0.27  // 27%
+                rate: 0.27  // 27% - for hypothetical property mode
             }
         };
         

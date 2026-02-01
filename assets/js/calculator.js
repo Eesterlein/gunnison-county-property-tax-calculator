@@ -13,7 +13,7 @@ class TaxCalculator {
     calculateAssessedValue(actualValue, propertyType) {
         const rates = this.dataLoader.getAssessmentRates(propertyType);
         
-        // Single rate for Commercial and Vacant Land
+        // Single rate for Commercial and Vacant (non-residential properties)
         if (rates.singleRate === true) {
             const assessedValue = actualValue * rates.rate;
             return {
