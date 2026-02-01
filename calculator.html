@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gunnison County Property Tax Calculator</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <header>
+            <h1>Gunnison County Property Tax Calculator</h1>
+            <p class="subtitle">Educational Tool - Estimates Only</p>
+        </header>
+        
+        <main>
+            <!-- Property Identification Section -->
+            <section id="property-identification" class="section">
+                <h2>Step 1: Identify Your Property</h2>
+                
+                <div class="tabs">
+                    <button class="tab-button active" data-tab="lookup" id="tab-lookup" aria-selected="true">
+                        Find My Property
+                    </button>
+                    <button class="tab-button" data-tab="hypothetical" id="tab-hypothetical" aria-selected="false">
+                        Estimate Hypothetical Property
+                    </button>
+                </div>
+                
+                <!-- Find My Property Tab -->
+                <div id="lookup-tab" class="tab-content active">
+                    <div class="input-group">
+                        <label>
+                            <input type="radio" name="lookup-type" value="account" checked>
+                            Account Number
+                        </label>
+                        <label>
+                            <input type="radio" name="lookup-type" value="address">
+                            Site Address
+                        </label>
+                    </div>
+                    
+                    <div id="account-input-group" class="input-group">
+                        <label for="account-number">Account Number</label>
+                        <input type="text" id="account-number" placeholder="e.g., M000002">
+                    </div>
+                    
+                    <div id="address-input-group" class="input-group" style="display: none;">
+                        <label for="address-search">Site Address</label>
+                        <input type="text" id="address-search" placeholder="Start typing address...">
+                        <div id="address-suggestions" class="suggestions" role="listbox" aria-label="Address suggestions"></div>
+                    </div>
+                    
+                    <button id="lookup-button" class="btn-primary">Look Up Property</button>
+                    
+                    <div id="property-results" class="results-box" style="display: none;" role="region" aria-live="polite">
+                        <h3>Property Information</h3>
+                        <div id="property-details"></div>
+                    </div>
+                </div>
+                
+                <!-- Hypothetical Property Tab -->
+                <div id="hypothetical-tab" class="tab-content">
+                    <div class="warning-banner" role="alert">
+                        <strong>⚠️ Educational Use Only:</strong> This option is for exploring how property taxes are calculated. Results are not official and should not be used for planning purposes.
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="hypothetical-property-type">Property Type</label>
+                        <select id="hypothetical-property-type">
+                            <option value="Residential">Residential</option>
+                            <option value="Vacant Land">Vacant Land</option>
+                            <option value="Commercial">Commercial</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="hypothetical-actual-value">Actual Value ($)</label>
+                        <input type="number" id="hypothetical-actual-value" min="0" step="1000" placeholder="e.g., 100000">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="hypothetical-tax-district">Tax District</label>
+                        <div style="display: flex; gap: 0.5rem; align-items: flex-start;">
+                            <input type="text" id="hypothetical-tax-district" placeholder="e.g., 100" style="flex: 1;">
+                            <button type="button" id="view-tax-district-map-button" class="btn-secondary" style="white-space: nowrap;">View Tax District Map</button>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="hypothetical-lg-mill">Local Government Mill Levy</label>
+                        <input type="number" id="hypothetical-lg-mill" step="0.001" placeholder="e.g., 23.973">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="hypothetical-school-mill">School District Mill Levy</label>
+                        <input type="number" id="hypothetical-school-mill" step="0.001" placeholder="e.g., 26.677">
+                    </div>
+                    
+                    <button id="use-hypothetical-button" class="btn-primary">Use These Values</button>
+                </div>
+            </section>
+            
+            <!-- Assessment Calculation Section -->
+            <section id="assessment-section" class="section" style="display: none;">
+                <h2>Step 2: Assessment Rates</h2>
+                <div id="assessment-rates-display" class="info-box"></div>
+                
+                <button id="calculate-assessed-button" class="btn-primary">Calculate My Assessed Value</button>
+                
+                <div id="assessed-value-results" class="results-box" style="display: none;" role="region" aria-live="polite"></div>
+            </section>
+            
+            <!-- Mill Levy Section -->
+            <section id="mill-levy-section" class="section" style="display: none;">
+                <h2>Step 3: Tax Districts & Mill Levies</h2>
+                <div id="mill-levy-display" class="info-box"></div>
+            </section>
+            
+            <!-- Tax Estimation Section -->
+            <section id="tax-estimation-section" class="section" style="display: none;">
+                <h2>Step 4: Estimate My Taxes</h2>
+                <button id="estimate-taxes-button" class="btn-primary">Estimate My Taxes</button>
+                
+                <div id="tax-estimation-results" class="results-box" style="display: none;" role="region" aria-live="polite"></div>
+                
+                <div style="margin-top: 1.5rem;">
+                    <button id="reset-button" class="btn-secondary">Look Up Another Property</button>
+                </div>
+            </section>
+            
+            <!-- Exemptions & Adjustments Section -->
+            <section id="exemptions-section" class="section" style="display: none;" role="region" aria-live="polite">
+                <h2>Exemptions & Adjustments</h2>
+                <div id="exemptions-display"></div>
+            </section>
+            
+            <!-- Appeals Education Section -->
+            <section id="appeals-section" class="section collapsible">
+                <button class="collapsible-header" aria-expanded="false" aria-controls="appeals-content">
+                    <h2>Understanding Appeals</h2>
+                    <span class="expand-icon" aria-hidden="true">▼</span>
+                </button>
+                <div id="appeals-content" class="collapsible-content">
+                    <div class="info-box appeals-section">
+                        <h3>Important Information</h3>
+                        <p><strong>Taxes cannot be appealed.</strong></p>
+                        <p>The tax amount is calculated using:</p>
+                        <ul>
+                            <li>The property's actual value, determined by the Assessor's Office</li>
+                            <li>Assessment rates, which are set by Colorado state law</li>
+                            <li>Mill levies, which are set by local taxing authorities</li>
+                        </ul>
+                        <p>The Gunnison County Assessor's Office does not set assessment rates or mill levies.</p>
+                        <p><strong>Actual value can be appealed.</strong> Appeals relate only to actual (market) value. If you believe your property's actual value is incorrect, you may appeal the assessment. This applies to all property types (residential, commercial, vacant land).</p>
+                        
+                        <h3>Appeal Period</h3>
+                        <p>Appeals must be filed <strong>May 1 through June 8</strong>. Late appeals cannot be accepted.</p>
+                        
+                        <h3>How to Submit an Appeal</h3>
+                        <p>Appeals must be submitted in writing. You may submit your appeal:</p>
+                        <ul>
+                            <li>In person at the Gunnison County Assessor's Office</li>
+                            <li>By email to <a href="mailto:assessor@gunnisoncounty.org">assessor@gunnisoncounty.org</a></li>
+                            <li>By mail to the Gunnison County Assessor's Office</li>
+                        </ul>
+                        
+                        <h3>Supporting Evidence</h3>
+                        <p>Before filing an appeal, review your property record in the <a href="https://www.gunnisoncounty.org/953/Appeals" target="_blank" rel="noopener">Property Record Search</a> and your Notice of Valuation to confirm the information on file is correct.</p>
+                        <p>You may compare your property to the <a href="https://www.gunnisoncounty.org/952/Reappraisal-Sales" target="_blank" rel="noopener">reappraisal sales</a> used during the valuation process to evaluate whether your value aligns with recent market activity.</p>
+                        <p>Appeals must be submitted in writing by June 8.</p>
+                        
+                        <div style="margin: 1.5rem 0;">
+                            <a href="https://www.gunnisoncounty.org/953/Appeals" target="_blank" rel="noopener" class="btn-primary" style="display: inline-block; text-decoration: none;">Official Appeal Information – Gunnison County</a>
+                        </div>
+                        
+                        <h3>Exemptions and Adjustments</h3>
+                        <p>Exemptions (such as senior exemptions) and adjustments (such as special district adjustments) are separate from the assessment appeal process. If you have questions about exemptions or adjustments, contact the Gunnison County Assessor's Office.</p>
+                        
+                        <h3>Mill Levies & Taxing Authorities</h3>
+                        <p>Mill levies are set by taxing authorities, not the Assessor. The Assessor's Office determines property values, but taxing authorities (county, municipalities, school districts, special districts) set mill levies that determine the tax rate.</p>
+                        <p>If you believe the actual value is correct but have concerns about mill levies, you should contact the applicable taxing authorities.</p>
+                        <div style="margin-top: 1rem;">
+                            <button type="button" id="view-taxing-authorities-button" class="btn-secondary">View Taxing Authorities</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p><strong>Disclaimer:</strong> This calculator provides estimates for educational purposes only. Official tax bills and county records control all tax calculations.</p>
+            <p>Data source: Gunnison County Assessor's Office | Last updated: <span id="last-updated">2025</span></p>
+            <p>
+                <a href="https://www.gunnisoncounty.org" target="_blank" rel="noopener">Official County Website</a> |
+                <a href="index.html">Return to Disclaimer</a>
+            </p>
+        </footer>
+    </div>
+    
+    <script src="assets/js/data-loader.js"></script>
+    <script src="assets/js/property-lookup.js"></script>
+    <script src="assets/js/calculator.js"></script>
+    <script src="assets/js/ui.js"></script>
+</body>
+</html>

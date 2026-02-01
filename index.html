@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gunnison County Property Tax Calculator - Disclaimer</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <div class="disclaimer-container">
+        <header>
+            <h1>Gunnison County Property Tax Calculator</h1>
+            <p class="subtitle">Educational Tool</p>
+        </header>
+        
+        <main class="disclaimer-content">
+            <div class="disclaimer-box">
+                <h2>Important Disclaimer</h2>
+                
+                <p>This property tax calculator is an <strong>educational tool</strong> designed to help you understand how property taxes are calculated in Gunnison County, Colorado.</p>
+                
+                <div class="warning-section">
+                    <h3>Please Read Carefully:</h3>
+                    <ul>
+                        <li>This tool is for educational purposes only</li>
+                        <li>Data reflects tax year 2025 and may not represent values or rates for other tax years</li>
+                        <li>Tax district boundaries and mill levies change annually</li>
+                        <li>Estimates may differ due to rounding methods, exemptions, or other adjustments</li>
+                        <li>Official county records and tax statements control all tax calculations</li>
+                    </ul>
+                </div>
+                
+                <div class="acknowledgment-section">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="disclaimer-checkbox" aria-required="true">
+                        <span>I understand this tool is for educational purposes only and that estimates may not match official tax bills.</span>
+                    </label>
+                </div>
+                
+                <div class="button-section">
+                    <button id="continue-button" class="btn-primary" disabled aria-describedby="button-help">
+                        Continue to Calculator
+                    </button>
+                    <p id="button-help" class="help-text">You must acknowledge the disclaimer to continue.</p>
+                </div>
+            </div>
+            
+            <div class="resources-section">
+                <h3>Official Resources</h3>
+                <ul>
+                    <li><a href="https://www.gunnisoncounty.org/681/How-Property-Taxes-are-Determined" target="_blank" rel="noopener">How Property Taxes are Determined</a></li>
+                    <li><a href="https://www.gunnisoncounty.org" target="_blank" rel="noopener">Gunnison County Website</a></li>
+                </ul>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        const checkbox = document.getElementById('disclaimer-checkbox');
+        const continueButton = document.getElementById('continue-button');
+        const buttonHelp = document.getElementById('button-help');
+        
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                continueButton.disabled = false;
+                continueButton.setAttribute('aria-disabled', 'false');
+                buttonHelp.textContent = '';
+                continueButton.focus();
+            } else {
+                continueButton.disabled = true;
+                continueButton.setAttribute('aria-disabled', 'true');
+                buttonHelp.textContent = 'You must acknowledge the disclaimer to continue.';
+            }
+        });
+        
+        continueButton.addEventListener('click', function() {
+            if (checkbox.checked) {
+                window.location.href = 'calculator.html';
+            }
+        });
+        
+        // Allow Enter key to submit when checkbox is checked
+        checkbox.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && this.checked) {
+                continueButton.click();
+            }
+        });
+    </script>
+</body>
+</html>
