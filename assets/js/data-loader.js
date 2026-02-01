@@ -20,12 +20,12 @@ class DataLoader {
             console.log('Current location:', window.location.href);
             console.log('Current pathname:', window.location.pathname);
             
-            // Use absolute paths from server root (leading slash) with cache-busting
+            // Use relative paths for GitHub Pages compatibility (works on both localhost and GitHub Pages)
             const cacheBuster = '?v=' + Date.now();
-            const addressesUrl = '/assets/data/addresses.json' + cacheBuster;
-            const marketUrl = '/assets/data/market.json' + cacheBuster;
-            const seniorsUrl = '/assets/data/seniors.json' + cacheBuster;
-            const adjustmentsUrl = '/assets/data/adjustments.json' + cacheBuster;
+            const addressesUrl = 'assets/data/addresses.json' + cacheBuster;
+            const marketUrl = 'assets/data/market.json' + cacheBuster;
+            const seniorsUrl = 'assets/data/seniors.json' + cacheBuster;
+            const adjustmentsUrl = 'assets/data/adjustments.json' + cacheBuster;
             
             console.log('Loading from URLs:', { addressesUrl, marketUrl, seniorsUrl, adjustmentsUrl });
             

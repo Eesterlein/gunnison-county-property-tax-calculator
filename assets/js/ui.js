@@ -115,7 +115,7 @@ class UIController {
         if (taxDistrictMapButton) {
             taxDistrictMapButton.addEventListener('click', () => {
                 console.log('UIController: Tax district map button clicked');
-                window.open('/assets/maps/Tax_Districts.pdf', '_blank', 'noopener,noreferrer');
+                window.open('assets/maps/Tax_Districts.pdf', '_blank', 'noopener,noreferrer');
             });
         }
 
@@ -125,7 +125,7 @@ class UIController {
             taxingAuthoritiesButton.addEventListener('click', () => {
                 console.log('UIController: Taxing authorities button clicked');
                 // URL encode the filename to handle spaces (filename has space before .pdf)
-                const pdfPath = encodeURI('/assets/maps/taxing authorities .pdf');
+                const pdfPath = encodeURI('assets/maps/taxing authorities .pdf');
                 window.open(pdfPath, '_blank', 'noopener,noreferrer');
             });
         }
