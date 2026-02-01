@@ -1,7 +1,8 @@
-<<<<<<< HEAD
 # Gunnison County Property Tax Calculator
 
-An educational property tax calculator for Gunnison County, Colorado. This tool helps users understand how property taxes are calculated but does not replace official tax bills or county records.
+Educational, client-side property tax calculator for Gunnison County, Colorado. Uses publicly available data to demonstrate how assessed values and mill levies are used to estimate property taxes. Not an official tax system.
+
+This tool helps users understand how property taxes are calculated but does not replace official tax bills or county records.
 
 ## Project Structure
 
@@ -17,11 +18,14 @@ Gunnison County Property Tax Calculator/
 │   │   ├── property-lookup.js  # Property search functionality
 │   │   ├── calculator.js       # Tax calculation logic
 │   │   └── ui.js               # UI controller
-│   └── data/              # JSON data files (generated)
-│       ├── addresses.json
-│       ├── market.json
-│       ├── seniors.json
-│       └── adjustments.json
+│   ├── data/              # JSON data files (generated)
+│   │   ├── addresses.json
+│   │   ├── market.json
+│   │   ├── seniors.json
+│   │   └── adjustments.json
+│   └── maps/              # PDF map files
+│       ├── Tax_Districts.pdf
+│       └── taxing authorities .pdf
 ├── cleaning/              # Data cleaning scripts
 │   ├── clean_addresses.py
 │   ├── clean_market.py
@@ -29,7 +33,7 @@ Gunnison County Property Tax Calculator/
 │   ├── clean_adjustments.py
 │   └── csv_to_json.py
 └── data/
-    ├── raw/               # Original CSV files
+    ├── raw/               # Original CSV files (excluded from repo)
     └── cleaned/          # Cleaned CSV files
 ```
 
@@ -113,7 +117,3 @@ This is a public-facing educational tool for Gunnison County, Colorado.
 ## Disclaimer
 
 This calculator provides estimates for educational purposes only. Official tax bills and county records control all tax calculations.
-=======
-# gunnison-county-property-tax-calculator
-Educational, client-side property tax calculator for Gunnison County, Colorado. Uses publicly available data to demonstrate how assessed values and mill levies are used to estimate property taxes. Not an official tax system.
->>>>>>> bf8271e3b0eb74988d90e4c5f9979d164951d141
