@@ -561,7 +561,7 @@ class UIController {
                 </div>
                 <div class="warning-banner" role="alert">
                     <strong>⚠️ Important:</strong> This is an estimate for educational purposes only. 
-                    Your official tax bill may differ due to exemptions, adjustments, or changes in mill levies.
+                    Your official tax bill may differ due to exemptions, adjustments, changes in mill levies, or differences in rounding methods used by official tax systems.
                 </div>
             `;
         } else {
@@ -588,7 +588,7 @@ class UIController {
                 </div>
                 <div class="warning-banner" role="alert">
                     <strong>⚠️ Important:</strong> This is an estimate for educational purposes only. 
-                    Your official tax bill may differ due to exemptions, adjustments, or changes in mill levies.
+                    Your official tax bill may differ due to exemptions, adjustments, changes in mill levies, or differences in rounding methods used by official tax systems.
                 </div>
             `;
         }
