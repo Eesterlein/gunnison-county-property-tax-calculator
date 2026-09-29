@@ -20,7 +20,7 @@
 - `assets/data/*.json` - All JSON data files (4 files)
 - `assets/maps/*.pdf` - All PDF map files (2 files)
 - `cleaning/*.py` - Data cleaning scripts (for reference)
-- `data/cleaned/*.csv` - Cleaned CSV files (for reference)
+- `data/cleaned/*.csv` - Intermediate CSVs produced by the `cleaning/` scripts (generated locally, not committed)
 - `README.md` - Project documentation
 - `.gitignore` - Git ignore rules
 

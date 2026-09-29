@@ -34,3 +34,6 @@ test_*.html
 # Temporary files
 *.tmp
 *.temp
+
+# Intermediate cleaned CSVs (the site loads assets/data/*.json)
+data/cleaned/
